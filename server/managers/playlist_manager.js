@@ -27,9 +27,7 @@ class PlaylistManager {
   async getPlaylistById (id) {
     const playlists = await this.getAllPlaylists();
 
-    return playlists.find((playlist) => {
-      return playlist.id === id;
-    });
+    return playlists.find(playlist => playlist.id === id);
   }
 
   /**
