@@ -23,7 +23,9 @@ class SongsManager {
    * @returns chanson correspondant à l'id
    */
   async getSongById (id) {
-    return { id: -1 };
+    const songs = await this.getAllSongs();
+
+    return songs.find(song => song.id === id);
   }
 
   /**
