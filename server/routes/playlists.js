@@ -25,7 +25,12 @@ router.get("/", async (request, response) => {
  * @name GET /playlists/:id
  */
 router.use("/:id", async (request, response) => {
-  response.status(HTTP_STATUS.SERVER_ERROR).json({});
+  try {
+    const playlist = await playlistManager.getPlaylistById(request.params.id);
+    response.status(HTTP_STATUS.SUCCESS).json(playlist);
+  } catch (error) {
+    response.status(HTTP_STATUS.SERVER_ERROR).json(error);
+  }
 });
 
 /**

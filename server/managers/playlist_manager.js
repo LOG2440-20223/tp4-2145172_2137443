@@ -25,7 +25,11 @@ class PlaylistManager {
    * @returns Retourne la playlist en fonction de son id
    */
   async getPlaylistById (id) {
-    return { id: "-1" };
+    const playlists = await this.getAllPlaylists();
+
+    return playlists.find((playlist) => {
+      return playlist.id === id;
+    });
   }
 
   /**
