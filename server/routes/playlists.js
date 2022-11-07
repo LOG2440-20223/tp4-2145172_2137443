@@ -24,7 +24,7 @@ router.get("/", async (request, response) => {
  * @memberof module:routes/playlists
  * @name GET /playlists/:id
  */
-router.use("/:id", async (request, response) => {
+router.get("/:id", async (request, response) => {
   try {
     const playlist = await playlistManager.getPlaylistById(request.params.id);
 
