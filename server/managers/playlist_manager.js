@@ -53,6 +53,8 @@ class PlaylistManager {
    */
   async updatePlaylist (playlist) {
     let playlists = await this.getAllPlaylists();
+    playlists.push(playlist);
+    await this.fileSystemManager.writeToJsonFile(this.JSON_PATH, JSON.stringify({ playlists }));
   }
 
   /**
