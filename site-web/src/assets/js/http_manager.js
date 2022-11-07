@@ -88,7 +88,7 @@ export default class HTTPManager {
    * @returns {Promise} une chanson
    */
   async fetchSong (id) {
-    const song = { id: -1 };
+    const song = await HTTPInterface.GET(`${this.songsBaseURL}/${id}`);
     return song;
   }
 
