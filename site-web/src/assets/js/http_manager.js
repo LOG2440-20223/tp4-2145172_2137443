@@ -63,6 +63,7 @@ export default class HTTPManager {
    * @returns {Promise} Liste des chansons
    */
   async fetchAllSongs () {
+    // FIXME: Ask if we should check for 200
     const songs = await HTTPInterface.GET(this.songsBaseURL);
     this.songs = songs;
     return songs;
@@ -74,7 +75,9 @@ export default class HTTPManager {
    * @returns {Promise} Liste des playlists
    */
   async fetchAllPlaylists () {
-    const playlists = [];
+    // FIXME: Ask if we should check for 200
+    const playlists = await HTTPInterface.GET(this.playlistBaseURL);
+    this.playlists = playlists;
     return playlists;
   }
 
