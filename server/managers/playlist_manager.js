@@ -53,7 +53,13 @@ class PlaylistManager {
    */
   async updatePlaylist (playlist) {
     const playlists = await this.getAllPlaylists();
-    playlists.push(playlist);
+
+    const index = playlists.findIndex(element => element.id === playlist.id);
+
+    if (index > -1) {
+      playlists[index] = playlist;
+    }
+
     await this.fileSystemManager.writeToJsonFile(this.JSON_PATH, JSON.stringify({ playlists }));
   }
 
