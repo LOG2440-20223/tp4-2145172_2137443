@@ -82,8 +82,14 @@ router.put("/:id", async (request, response) => {
  * @memberof module:routes/playlists
  * @name DELETE /playlists/:id
  */
-router.use("/:id", async (request, response) => {
-  response.status(HTTP_STATUS.SERVER_ERROR).json({});
+router.delete("/:id", async (request, response) => {
+  try {
+    const isDeleted = await playlistManager.deletePlaylist(request.params.id);
+
+    response.status(isDeleted ? HTTP_STATUS.SUCCESS : HTTP_STATUS.NOT_FOUND).send();
+  } catch (error) {
+    response.status(HTTP_STATUS.SERVER_ERROR).json(error);
+  }
 });
 
 module.exports = { router, playlistManager };
