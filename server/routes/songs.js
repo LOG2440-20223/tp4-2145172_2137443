@@ -25,8 +25,18 @@ router.get("/", async (request, response) => {
  * @memberof module:routes/songs
  * @name GET /songs/:id
  */
-router.use("/:id", async (request, response) => {
-  response.status(HTTP_STATUS.SERVER_ERROR).json({});
+router.get("/:id", async (request, response) => {
+  try {
+    const song = await songsManager.getSongById(parseInt(request.params.id));
+
+    if (song) {
+      response.status(HTTP_STATUS.SUCCESS).json(song);
+    } else {
+      response.status(HTTP_STATUS.NOT_FOUND).send();
+    }
+  } catch (error) {
+    response.status(HTTP_STATUS.SERVER_ERROR).json(error);
+  }
 });
 
 /**
