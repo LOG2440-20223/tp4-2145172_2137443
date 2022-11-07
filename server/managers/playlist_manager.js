@@ -52,7 +52,7 @@ class PlaylistManager {
    * @param {Object} playlist nouveau contenu de la playlist
    */
   async updatePlaylist (playlist) {
-    let playlists = await this.getAllPlaylists();
+    const playlists = await this.getAllPlaylists();
     playlists.push(playlist);
     await this.fileSystemManager.writeToJsonFile(this.JSON_PATH, JSON.stringify({ playlists }));
   }
