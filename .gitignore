@@ -25,11 +25,12 @@ Thumbs.db
 *.tar
 *.zip
 
-# --------------------------------------------------------
+# -------------------------------!.eslintrc.json-------------------------
 # BEGIN Explictly Allowed Files (i.e. do NOT ignore these)
 # --------------------------------------------------------
 
 # track these files, if they exist
+!.eslintrc.json
 !.gitignore
 !.editorconfig
 !.phpcs.xml.dist
