@@ -62,8 +62,18 @@ router.post("/", async (request, response) => {
  * @memberof module:routes/playlists
  * @name PUT /playlists/:id
  */
-router.use("/:id", async (request, response) => {
-  response.status(HTTP_STATUS.SERVER_ERROR).json({});
+router.put("/:id", async (request, response) => {
+  try {
+    if (!Object.keys(request.body).length) {
+      response.status(HTTP_STATUS.BAD_REQUEST).send();
+      return;
+    }
+
+    await playlistManager.updatePlaylist(request.body);
+    response.status(HTTP_STATUS.SUCCESS).json({ id: request.params.id });
+  } catch (error) {
+    response.status(HTTP_STATUS.SERVER_ERROR).json(error);
+  }
 });
 
 /**
