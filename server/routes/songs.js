@@ -69,8 +69,14 @@ router.get("/player/:id", async (request, response) => {
  * @memberof module:routes/songs
  * @name PATCH /songs/:id/like
  */
-router.use("/:id/like", async (request, response) => {
-  response.status(HTTP_STATUS.SERVER_ERROR).json({ liked: false });
+router.patch("/:id/like", async (request, response) => {
+  try {
+    const newLikedState = await songsManager.updateSongLike(parseInt(request.params.id));
+
+    response.status(HTTP_STATUS.SUCCESS).json({ liked: newLikedState });
+  } catch (error) {
+    response.status(HTTP_STATUS.SERVER_ERROR).json(error);
+  }
 });
 
 module.exports = { router, songsManager };
