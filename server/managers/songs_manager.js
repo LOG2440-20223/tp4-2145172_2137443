@@ -35,7 +35,21 @@ class SongsManager {
    * @returns {boolean} le nouveau état aimé de la chanson
    */
   async updateSongLike (id) {
-    return false;
+    const songs = await this.getAllSongs();
+
+    const index = songs.findIndex(song => song.id === id);
+
+    if (index < 0) {
+      return false;
+    }
+
+    const newLikedState = !(songs[index].liked);
+
+    songs[index].liked = newLikedState;
+
+    await this.fileSystemManager.writeToJsonFile(this.JSON_PATH, JSON.stringify({ songs }));
+
+    return newLikedState;
   }
 }
 
