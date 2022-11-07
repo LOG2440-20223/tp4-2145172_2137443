@@ -63,7 +63,8 @@ export default class HTTPManager {
    * @returns {Promise} Liste des chansons
    */
   async fetchAllSongs () {
-    const songs = [];
+    const songs = await HTTPInterface.GET(this.songsBaseURL);
+    this.songs = songs;
     return songs;
   }
 
