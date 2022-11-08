@@ -102,7 +102,7 @@ export class Library {
     const searchString = searchInput.value;
     const searchResults = await this.HTTPManager.search(searchString, exactMatch);
 
-    this.generateLists(searchResults.playlist, searchResults.songs);
+    this.generateLists(searchResults.playlists, searchResults.songs);
   }
 }
 
