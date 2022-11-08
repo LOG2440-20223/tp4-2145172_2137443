@@ -204,7 +204,7 @@ export default class HTTPManager {
    */
   async deletePlaylist (id) {
     try {
-      await Promise.resolve("TODO");
+      await HTTPInterface.DELETE(`${this.playlistBaseURL}/${id}`);
     } catch (err) {
       window.alert("An error has occured while deleting a playlist", err);
     }
