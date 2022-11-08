@@ -148,6 +148,7 @@ export default class PlayListEditor {
     // TODO : Envoyer la bonne requête
     if (playlistId) {
       // TODO : Modifer la playlist
+      newPlaylist.id = playlistId;
       await this.HTTPManager.updatePlaylist(newPlaylist);
     } else {
       // TODO : Créer la playlist
