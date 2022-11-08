@@ -89,6 +89,7 @@ export default class PlayListEditor {
    * @param {string} id identifiant de la playlist
    */
   async loadForEdit (id) {
+    // FIXME: There is no coverage in this method
     const playlist = await this.HTTPManager.getPlaylistById(id);
     document.getElementById("name").value = playlist.name;
     document.getElementById("description").value = playlist.description;
