@@ -115,6 +115,7 @@ export default class HTTPManager {
    * ou les 2 attributs sont des tableaux avec les playlists et les chansons qui correspondent à la recherche
    */
   async search (query, exact) {
+    // FIXME: Handle errors
     const searchResults = await HTTPInterface.GET(`${this.searchBaseURL}?search_query=${query}&exact=${exact}`);
     return searchResults;
   }
@@ -161,7 +162,8 @@ export default class HTTPManager {
    */
   async getPlaylistById (id) {
     try {
-      const playlist = {};
+      // FIXME: Check for 200
+      const playlist = await HTTPInterface.GET(`${thid.playlistBaseURL}/${id}`);
       return playlist;
     } catch (err) {
       window.alert(err);
