@@ -159,7 +159,10 @@ export default class PlayListEditor {
    * Suite à la supression, l'utilisateur est redirigé vers la page 'index.html'
    * @param {string} id identifiant de la playlist à supprimer
    */
-  async deletePlaylist (id) { }
+  async deletePlaylist (id) {
+    await this.HTTPManager.deletePlaylist(id);
+    location.href = "index.html";
+  }
 
   async getImageInput (input, reader = new FileReader()) {
     if (input && input.files && input.files[0]) {
