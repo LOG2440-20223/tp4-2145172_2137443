@@ -100,6 +100,9 @@ export class Library {
    */
   async search (searchInput, exactMatch) {
     const searchString = searchInput.value;
+    const searchResults = await this.HTTPManager.search(searchString, exactMatch);
+
+    this.generateLists(searchResults.playlist, searchResults.songs);
   }
 }
 
