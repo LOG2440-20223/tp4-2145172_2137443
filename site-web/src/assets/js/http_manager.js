@@ -163,7 +163,7 @@ export default class HTTPManager {
   async getPlaylistById (id) {
     try {
       // FIXME: Check for 200
-      const playlist = await HTTPInterface.GET(`${thid.playlistBaseURL}/${id}`);
+      const playlist = await HTTPInterface.GET(`${this.playlistBaseURL}/${id}`);
       return playlist;
     } catch (err) {
       window.alert(err);
