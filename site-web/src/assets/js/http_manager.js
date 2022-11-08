@@ -177,7 +177,7 @@ export default class HTTPManager {
    */
   async addNewPlaylist (playlist) {
     try {
-      await Promise.resolve("TODO");
+      await Promise.resolve(HTTPInterface.POST(this.playlistBaseURL, playlist));
     } catch (err) {
       window.alert("An error has occured while adding a new playlist", err);
     }
