@@ -147,8 +147,10 @@ export default class PlayListEditor {
     // TODO : Envoyer la bonne requête
     if (playlistId) {
       // TODO : Modifer la playlist
+      await this.HTTPManager.updatePlaylist(newPlaylist);
     } else {
       // TODO : Créer la playlist
+      await this.HTTPManager.addNewPlaylist(newPlaylist);
     }
   }
 
