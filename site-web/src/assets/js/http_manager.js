@@ -177,8 +177,7 @@ export default class HTTPManager {
    */
   async addNewPlaylist (playlist) {
     try {
-      // FIXME: Ask about await Promise.resolve(HTTP...) vs await HTTP...
-      await Promise.resolve(HTTPInterface.POST(this.playlistBaseURL, playlist));
+      await HTTPInterface.POST(this.playlistBaseURL, playlist);
     } catch (err) {
       window.alert("An error has occured while adding a new playlist", err);
     }
@@ -191,7 +190,7 @@ export default class HTTPManager {
    */
   async updatePlaylist (playlist) {
     try {
-      await Promise.resolve(HTTPInterface.PUT(`${this.playlistBaseURL}/${playlist.id}`, playlist));
+      await HTTPInterface.PUT(`${this.playlistBaseURL}/${playlist.id}`, playlist);
     } catch (err) {
       window.alert("An error has occured while adding a new playlist", err);
     }
