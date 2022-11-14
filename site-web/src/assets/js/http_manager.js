@@ -63,10 +63,13 @@ export default class HTTPManager {
    * @returns {Promise} Liste des chansons
    */
   async fetchAllSongs () {
-    // FIXME: Ask if we should check for 200
-    const songs = await HTTPInterface.GET(this.songsBaseURL);
-    this.songs = songs;
-    return songs;
+    try {
+      const songs = await HTTPInterface.GET(this.songsBaseURL);
+      this.songs = songs;
+      return songs;
+    } catch (err) {
+      window.alert("Error while fetching all songs.", err);
+    }
   }
 
   /**
@@ -75,10 +78,13 @@ export default class HTTPManager {
    * @returns {Promise} Liste des playlists
    */
   async fetchAllPlaylists () {
-    // FIXME: Ask if we should check for 200
-    const playlists = await HTTPInterface.GET(this.playlistBaseURL);
-    this.playlists = playlists;
-    return playlists;
+    try {
+      const playlists = await HTTPInterface.GET(this.playlistBaseURL);
+      this.playlists = playlists;
+      return playlists;
+    } catch (err) {
+      window.alert("Error while fetching all playlists.", err);
+    }
   }
 
   /**
@@ -88,8 +94,12 @@ export default class HTTPManager {
    * @returns {Promise} une chanson
    */
   async fetchSong (id) {
-    const song = await HTTPInterface.GET(`${this.songsBaseURL}/${id}`);
-    return song;
+    try {
+      const song = await HTTPInterface.GET(`${this.songsBaseURL}/${id}`);
+      return song;
+    } catch (err) {
+      window.alert(`Error while fetching song ${id}`, err);
+    }
   }
 
   /**
@@ -98,9 +108,13 @@ export default class HTTPManager {
    * @returns {Promise} un URL qui représente le fichier de musique
    */
   async getSongURLFromId (id) {
-    const songBlob = await fetch(`${HTTPInterface.SERVER_URL}/${this.songsBaseURL}/${this.songFileBaseURL}/${id}`);
-    const url = URL.createObjectURL(await songBlob.blob());
-    return url;
+    try {
+      const songBlob = await fetch(`${HTTPInterface.SERVER_URL}/${this.songsBaseURL}/${this.songFileBaseURL}/${id}`);
+      const url = URL.createObjectURL(await songBlob.blob());
+      return url;
+    } catch (err) {
+      window.alert(`Error while fetchning song url for song ${id}`, err);
+    }
   }
 
   /**
@@ -115,9 +129,12 @@ export default class HTTPManager {
    * ou les 2 attributs sont des tableaux avec les playlists et les chansons qui correspondent à la recherche
    */
   async search (query, exact) {
-    // FIXME: Handle errors
-    const searchResults = await HTTPInterface.GET(`${this.searchBaseURL}?search_query=${query}&exact=${exact}`);
-    return searchResults;
+    try {
+      const searchResults = await HTTPInterface.GET(`${this.searchBaseURL}?search_query=${query}&exact=${exact}`);
+      return searchResults;
+    } catch (err) {
+      window.alert(`Errow while searching query=${query}, exact=${exact}`, err);
+    }
   }
 
   /**
@@ -162,11 +179,10 @@ export default class HTTPManager {
    */
   async getPlaylistById (id) {
     try {
-      // FIXME: Check for 200
       const playlist = await HTTPInterface.GET(`${this.playlistBaseURL}/${id}`);
       return playlist;
     } catch (err) {
-      window.alert(err);
+      window.alert(`Error while fetching playlist ${id}`, err);
     }
   }
 
