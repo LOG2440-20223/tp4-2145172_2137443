@@ -55,6 +55,7 @@ class PlaylistManager {
     const index = playlists.findIndex(element => element.id === playlist.id);
 
     if (index > -1) {
+      await this.savePlaylistThumbnail(playlist);
       playlists[index] = playlist;
     }
 
